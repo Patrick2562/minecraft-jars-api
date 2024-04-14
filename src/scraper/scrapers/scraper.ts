@@ -1,0 +1,22 @@
+import JarDto, { JarType } from "src/routes/jars/dto/jar.dto";
+import DownloadHandler from "../handlers/download.handler";
+import SpigotHandler from "../handlers/spigot.handler";
+
+export type ScraperResult = {
+    dto: JarDto
+    handler: typeof DownloadHandler | typeof SpigotHandler,
+    downloadUrl?: string,
+    javaVersion?: number
+};
+
+export default abstract class Scraper
+{
+    public PROJECT_NAME: JarType;
+    
+    constructor()
+    {
+        // 
+    }
+
+    abstract scrape(): Promise<ScraperResult[]>;
+}

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ $APP_ENV == "development" ]; then
+    echo "Started in development mode."
+    sleep infinity
+
+else
+    echo "Started in production mode."
+    npx prisma migrate deploy
+    npm run build
+    npm run start:prod
+fi

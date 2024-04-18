@@ -54,12 +54,13 @@ export default class JarsController
     @Get("/:type/:version/download")
     async download(@Res({ passthrough: true }) res: Response, @Param() params: DownloadParams)
     {
-        const filePath = path.resolve(process.env.JARS_DIR, params.type, `${params.version}.jar`);
+        const filePath = await this.JarsService.getFilePath(params.type, params.version);
+        const fileName = path.basename(filePath);
         const file     = fs.createReadStream(filePath);
 
         res.set({
             "Content-Type":        "application/java-archive",
-            "Content-Disposition": `attachment; filename="${params.type}_${params.version}.jar"`,
+            "Content-Disposition": `attachment; filename="${fileName}"`,
         });
 
         return new StreamableFile(file);

@@ -1,4 +1,5 @@
 import { Injectable } from "@nestjs/common";
+import * as path from "path";
 
 import { JarType } from "./dto/jar.dto";
 import PrismaService from "src/prisma/prisma.service";
@@ -31,5 +32,23 @@ export default class JarsService
         });
 
         return list.map(v => v.version);
+    }
+
+    public async getFilePath(type: JarType, version: string): Promise<string | null>
+    {
+        let jar = await this.prisma.jar.findFirst({
+            where: {
+                type:    type,
+                version: version
+            },
+            select: {
+                fileName: true
+            }
+        });
+
+        if (! jar)
+            return null;
+
+        return path.resolve(process.env.JARS_DIR, type, jar.fileName);
     }
 }

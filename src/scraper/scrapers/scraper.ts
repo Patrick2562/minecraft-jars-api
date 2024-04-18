@@ -3,10 +3,10 @@ import DownloadHandler from "../handlers/download.handler";
 import SpigotHandler from "../handlers/spigot.handler";
 
 export type ScraperResult = {
-    dto: JarDto
+    dto: JarDto,
     handler: typeof DownloadHandler | typeof SpigotHandler,
     downloadUrl?: string,
-    javaVersion?: number
+    javaExecutablePath?: string
 };
 
 export default abstract class Scraper

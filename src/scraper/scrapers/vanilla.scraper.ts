@@ -27,6 +27,7 @@ export default class VanillaScraper extends Scraper {
             jar.identifier = version.sha1;
             jar.type       = this.PROJECT_NAME;
             jar.version    = version.id;
+            jar.fileName   = `${this.PROJECT_NAME}-${version.id}.jar`;
             
             list.push({
                 dto:         jar,

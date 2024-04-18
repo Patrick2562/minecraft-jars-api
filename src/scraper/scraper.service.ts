@@ -1,6 +1,4 @@
 import { Injectable } from "@nestjs/common";
-import * as fs from "fs";
-import * as path from "path";
 
 import Scraper from "./scrapers/scraper";
 import FoliaScraper from "./scrapers/folia.scraper";
@@ -13,6 +11,7 @@ import FabricScraper from "./scrapers/fabric.scraper";
 import BungeeCordScraper from "./scrapers/bungeecord.scraper";
 import PurpurScraper from "./scrapers/purpur.scraper";
 import SpigotScraper from "./scrapers/spigot.scraper";
+import ForgeScraper from "./scrapers/forge.scraper";
 
 @Injectable()
 export default class ScraperService
@@ -26,7 +25,8 @@ export default class ScraperService
         new FabricScraper(),
         new BungeeCordScraper(),
         new PurpurScraper(),
-        new SpigotScraper()
+        new SpigotScraper(),
+        new ForgeScraper()
     ];
 
     constructor(
@@ -54,10 +54,10 @@ export default class ScraperService
                     continue;
                 
                 if (jar) {
-                    console.log(`[${v.dto.type}] [${v.dto.version}] New build available`);
+                    console.log(`\n[${v.dto.type}] [${v.dto.version}] New build available`);
 
                 } else {
-                    console.log(`[${v.dto.type}] [${v.dto.version}] New version found`);
+                    console.log(`\n[${v.dto.type}] [${v.dto.version}] New version found`);
                 }
 
                 if (! await v.handler.handle(v))

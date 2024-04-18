@@ -1,30 +1,31 @@
 import { createHash } from "crypto";
 import * as path from "path";
-import parse from "node-html-parser";
+import * as jQuery from "jquery";
+import { JSDOM } from "jsdom";
 
-import JarDto, { JarType } from "src/routes/jars/dto/jar.dto";
+import { getJavaExecutableByClassVersion } from "src/utils/java";
+import JarDto, * as jarDto from "src/routes/jars/dto/jar.dto";
 import Scraper, { ScraperResult } from "./scraper";
 import { validateJarVersion } from "src/utils/validate";
 import SpigotHandler from "../handlers/spigot.handler";
 
+const $ = jQuery(new JSDOM().window);
+
 export default class SpigotScraper extends Scraper {
-    public PROJECT_NAME: JarType = JarType.spigot;
+    public PROJECT_NAME: jarDto.JarType = jarDto.JarType.spigot;
 
     public async scrape(): Promise<ScraperResult[]>
     {
         let res  = await fetch("https://hub.spigotmc.org/versions");
         let html = await res.text();
 
-        let root       = parse(html);
-        let links_html = root.querySelector("pre").textContent;
-        
-        let links_root = parse(links_html);
-        let links      = links_root.querySelectorAll("a");
-        
         let list: ScraperResult[] = [];
 
-        for (let link of links) {
-            let href    = link.getAttribute("href");
+        let root  = $(html);
+        let links = root.find("a").toArray();
+
+        for (let v of links) {
+            let href    = $(v).attr("href");
             let version = path.basename(href, ".json");
             
             if (! await validateJarVersion(version))
@@ -32,18 +33,19 @@ export default class SpigotScraper extends Scraper {
 
             let latest_build = await this.fetchLatestBuild(version);
 
-            if (! latest_build.javaVersion)
+            if (! latest_build.javaExecutablePath)
                 continue;
 
             let jar = new JarDto();
             jar.identifier = latest_build.identifier;
             jar.type       = this.PROJECT_NAME;
             jar.version    = version;
+            jar.fileName   = `${this.PROJECT_NAME}-${v.version}.jar`;
 
             list.push({
-                dto:         jar,
-                handler:     SpigotHandler,
-                javaVersion: latest_build.javaVersion
+                dto:      jar,
+                handler:  SpigotHandler,
+                javaExecutablePath: latest_build.javaExecutablePath
             });
         }
         
@@ -55,13 +57,15 @@ export default class SpigotScraper extends Scraper {
         let res   = await fetch(`https://hub.spigotmc.org/versions/${version}.json`);
         let build = await res.json();
 
-        let javaVersion = build.javaVersions
-            ? this.getAvailableJavaVersionForJar(build.javaVersions)
-            : 8;
+        let javaExecutablePath = getJavaExecutableByClassVersion(build?.javaVersions || [52, 52]);
+
+        if (! javaExecutablePath) {
+            console.log(`[${this.PROJECT_NAME}] [${version}] Missing java [${build.javaVersions.join(", ")}] to build`);
+        }
 
         return {
-            identifier:  this.getIdentifier(version, build.refs.Spigot),
-            javaVersion: javaVersion
+            identifier: this.getIdentifier(version, build.refs.Spigot),
+            javaExecutablePath
         };
     }
 
@@ -70,22 +74,5 @@ export default class SpigotScraper extends Scraper {
         return createHash("sha1")
             .update(`${this.PROJECT_NAME}_${version}_${build_ref}`)
             .digest("hex");
-    }
-
-    protected getAvailableJavaVersionForJar([min_ver, max_ver]: [number, number]): number | null
-    {
-        let availableVersions = [
-            { java_version: 8,  class_version: 52 },
-            { java_version: 17, class_version: 61 },
-            { java_version: 21, class_version: 65 }
-        ];
-
-        for (let v of availableVersions) {
-            if (v.class_version >= min_ver && v.class_version <= max_ver) {
-                return v.java_version;
-            }
-        }
-
-        return null;
     }
 }

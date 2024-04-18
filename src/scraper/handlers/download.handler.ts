@@ -9,7 +9,7 @@ export default abstract class DownloadHandler {
         return new Promise(async resolve => {
             downloadFile(
                 data.downloadUrl,
-                path.resolve(process.env.JARS_DIR, data.dto.type, `${data.dto.version}.jar`)
+                path.resolve(process.env.JARS_DIR, data.dto.type, data.dto.fileName)
             )
             .then(_ => {
                 console.log(`[${data.dto.type}] [${data.dto.version}] Downloaded`);

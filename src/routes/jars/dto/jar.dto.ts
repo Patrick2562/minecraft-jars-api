@@ -41,4 +41,8 @@ export default class JarDto
     })
     @IsNotEmpty()
     version: string;
+
+    @IsString()
+    @IsNotEmpty()
+    fileName: string;
 }

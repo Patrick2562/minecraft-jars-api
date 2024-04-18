@@ -3,7 +3,7 @@ import { CronJob } from "cron";
 export default abstract class Job
 {
     constructor(
-        public time: string = "* * * * * *",
+        public time: string = "* * * * *",
         public runOnInit: boolean = false
     )
     {

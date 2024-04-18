@@ -11,6 +11,7 @@ model Jar {
     identifier String @unique
     type String
     version String
+    fileName String
     createAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 }

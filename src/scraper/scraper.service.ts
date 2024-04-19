@@ -12,21 +12,23 @@ import BungeeCordScraper from "./scrapers/bungeecord.scraper";
 import PurpurScraper from "./scrapers/purpur.scraper";
 import SpigotScraper from "./scrapers/spigot.scraper";
 import ForgeScraper from "./scrapers/forge.scraper";
+import PufferfishScraper from "./scrapers/pufferfish.scraper";
 
 @Injectable()
 export default class ScraperService
 {
     private SCRAPERS: Scraper[] = [
+        new PurpurScraper(),
         new PaperScraper(),
         new VelocityScraper(),
         new FoliaScraper(),
-        new VanillaScraper(),
-        new MohistScraper(),
-        new FabricScraper(),
         new BungeeCordScraper(),
-        new PurpurScraper(),
-        new SpigotScraper(),
-        new ForgeScraper()
+        new PufferfishScraper(),
+        new VanillaScraper(),
+        new ForgeScraper(),
+        new FabricScraper(),
+        new MohistScraper(),
+        new SpigotScraper()
     ];
 
     constructor(

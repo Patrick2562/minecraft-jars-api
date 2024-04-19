@@ -10,7 +10,8 @@ export enum JarType {
     bungeecord = "bungeecord",
     forge      = "forge",
     fabric     = "fabric",
-    mohist     = "mohist"
+    mohist     = "mohist",
+    pufferfish = "pufferfish"
 }
 
 export enum JarName {
@@ -23,7 +24,8 @@ export enum JarName {
     spigot     = "SpigotMC",
     forge      = "Forge",
     fabric     = "Fabric",
-    mohist     = "MohistMC"
+    mohist     = "MohistMC",
+    pufferfish = "Pufferfish"
 }
 
 export default class JarDto

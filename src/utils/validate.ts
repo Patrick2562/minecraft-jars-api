@@ -1,5 +1,6 @@
-import JarDto from "src/routes/jars/dto/jar.dto";
 import { validate } from "class-validator";
+
+import JarDto from "src/routes/jars/dto/jar.dto";
 
 export const validateJarVersion = async (version: string): Promise<boolean> => {
     let jar = new JarDto();

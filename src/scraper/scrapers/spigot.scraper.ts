@@ -40,7 +40,7 @@ export default class SpigotScraper extends Scraper {
             jar.identifier = latest_build.identifier;
             jar.type       = this.PROJECT_NAME;
             jar.version    = version;
-            jar.fileName   = `${this.PROJECT_NAME}-${v.version}.jar`;
+            jar.fileName   = `${this.PROJECT_NAME}-${version}.jar`;
 
             list.push({
                 dto:      jar,

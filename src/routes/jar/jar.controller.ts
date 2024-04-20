@@ -3,14 +3,14 @@ import { Request, Response } from "express";
 import * as fs from "fs";
 import * as path from "path";
 
-import JarsService from "./jars.service";
+import JarService from "./jar.service";
 import { JarName, JarType } from "./dto/jar.dto";
 
 @Controller("jar")
-export default class JarsController
+export default class JarController
 {
     constructor(
-        private JarsService: JarsService
+        private JarsService: JarService
     ) {
         // 
     }

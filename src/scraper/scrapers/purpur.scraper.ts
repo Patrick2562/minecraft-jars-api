@@ -1,4 +1,4 @@
-import { JarType } from "src/routes/jars/dto/jar.dto";
+import { JarType } from "src/routes/jar/dto/jar.dto";
 import PaperScraper from "./paper.scraper";
 import DownloadHandler from "../handlers/download.handler";
 

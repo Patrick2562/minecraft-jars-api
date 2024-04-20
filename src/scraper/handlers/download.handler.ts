@@ -11,7 +11,7 @@ export default abstract class DownloadHandler {
                 data.downloadUrl,
                 path.resolve(process.env.JARS_DIR, data.dto.type, data.dto.fileName)
             )
-            .then(_ => {
+            .then(() => {
                 console.log(`[${data.dto.type}] [${data.dto.version}] Downloaded`);
                 resolve(true);
             })

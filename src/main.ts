@@ -1,8 +1,7 @@
 import { NestFactory } from "@nestjs/core";
+import { ValidationPipe } from "@nestjs/common";
 
 import AppModule from "./app.module";
-import { ValidationPipe } from "@nestjs/common";
-import { downloadSpigotBuildTools } from "./cron/jobs/updatespigot.job";
 
 async function bootstrap()
 {

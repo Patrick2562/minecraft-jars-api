@@ -1,4 +1,4 @@
-import { JarType } from "src/routes/jars/dto/jar.dto";
+import { JarType } from "src/routes/jar/dto/jar.dto";
 import PaperScraper from "./paper.scraper";
 
 export default class FoliaScraper extends PaperScraper {

@@ -4,7 +4,7 @@ import * as jQuery from "jquery";
 import { JSDOM } from "jsdom";
 
 import { getJavaExecutableByClassVersion } from "src/utils/java";
-import JarDto, * as jarDto from "src/routes/jars/dto/jar.dto";
+import JarDto, * as jarDto from "src/routes/jar/dto/jar.dto";
 import Scraper, { ScraperResult } from "./scraper";
 import { validateJarVersion } from "src/utils/validate";
 import SpigotHandler from "../handlers/spigot.handler";

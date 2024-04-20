@@ -11,4 +11,4 @@ import ScraperService from "./scraper.service";
         ScraperService
     ]
 })
-export default class JarsModule { }
+export default class ScraperModule { }

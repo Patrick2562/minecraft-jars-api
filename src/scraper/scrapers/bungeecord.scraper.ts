@@ -1,6 +1,6 @@
 import { createHash } from "crypto";
 
-import JarDto, { JarType } from "src/routes/jars/dto/jar.dto";
+import JarDto, { JarType } from "src/routes/jar/dto/jar.dto";
 import Scraper, { ScraperResult } from "./scraper";
 import DownloadHandler from "../handlers/download.handler";
 

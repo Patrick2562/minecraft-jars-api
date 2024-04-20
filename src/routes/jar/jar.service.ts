@@ -6,7 +6,7 @@ import { JarType } from "./dto/jar.dto";
 import PrismaService from "src/prisma/prisma.service";
 
 @Injectable()
-export default class JarsService
+export default class JarService
 {
     constructor(
         private prisma: PrismaService

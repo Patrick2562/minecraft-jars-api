@@ -1,4 +1,4 @@
-import JarDto, { JarType } from "src/routes/jars/dto/jar.dto";
+import JarDto, { JarType } from "src/routes/jar/dto/jar.dto";
 import DownloadHandler from "../handlers/download.handler";
 import SpigotHandler from "../handlers/spigot.handler";
 

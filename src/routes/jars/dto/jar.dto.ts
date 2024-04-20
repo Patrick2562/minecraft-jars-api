@@ -1,13 +1,13 @@
 import { IsEnum, IsNotEmpty, IsString, Matches } from "class-validator";
 
 export enum JarType {
-    vanilla    = "vanilla",
     purpur     = "purpur",
+    vanilla    = "vanilla",
     paper      = "paper",
-    spigot     = "spigot",
     folia      = "folia",
     velocity   = "velocity",
     bungeecord = "bungeecord",
+    spigot     = "spigot",
     forge      = "forge",
     fabric     = "fabric",
     mohist     = "mohist",
@@ -15,8 +15,8 @@ export enum JarType {
 }
 
 export enum JarName {
-    vanilla    = "Vanilla",
     purpur     = "Purpur",
+    vanilla    = "Vanilla",
     paper      = "PaperMC",
     folia      = "Folia",
     velocity   = "Velocity",

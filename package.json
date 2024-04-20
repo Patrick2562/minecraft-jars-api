@@ -29,6 +29,7 @@
     "ansi": "^0.3.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
+    "compare-versions": "^6.1.0",
     "cron": "^3.1.7",
     "fs": "^0.0.1-security",
     "jquery": "^3.7.1",

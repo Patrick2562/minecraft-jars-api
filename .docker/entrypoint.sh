@@ -6,6 +6,7 @@ if [ $APP_ENV == "development" ]; then
 
 else
     echo "Started in production mode."
+    npm install
     npx prisma migrate deploy
     npm run build
     npm run start:prod

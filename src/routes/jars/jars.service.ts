@@ -1,4 +1,5 @@
 import { Injectable } from "@nestjs/common";
+import { compareVersions } from "compare-versions";
 import * as path from "path";
 
 import { JarType } from "./dto/jar.dto";
@@ -17,7 +18,13 @@ export default class JarsService
             by: [ "type" ]
         });
 
-        return list.map(v => v.type);
+        let order = Object.values(JarType);
+        
+        return list
+            .map(v => v.type)
+            .sort((a: JarType, b: JarType) => {  
+                return order.indexOf(a) - order.indexOf(b);
+            });
     }
 
     public async getVersions(type: JarType)
@@ -31,7 +38,11 @@ export default class JarsService
             }
         });
 
-        return list.map(v => v.version);
+        return list
+            .map(v => v.version)
+            .sort((a: string, b: string) => {
+                return compareVersions(b, a);
+            });
     }
 
     public async getFilePath(type: JarType, version: string): Promise<string | null>

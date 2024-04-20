@@ -6,7 +6,7 @@ import * as path from "path";
 import JarService from "./jar.service";
 import { JarName, JarType } from "./dto/jar.dto";
 
-@Controller("jar")
+@Controller("/jar")
 export default class JarController
 {
     constructor(

@@ -1,6 +1,6 @@
 import { Controller, Get } from "@nestjs/common";
 
-@Controller("status")
+@Controller("/status")
 export default class StatusController
 {
     constructor()

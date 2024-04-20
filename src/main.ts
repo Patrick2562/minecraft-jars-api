@@ -12,6 +12,8 @@ async function bootstrap()
             whitelist: true
         })
     );
+
+    app.setGlobalPrefix("/api");
     
     await app.listen(80);
 }

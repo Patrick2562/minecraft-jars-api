@@ -1,3 +1,7 @@
+<p align="center">
+    <img width="50%" height="auto" src="https://github.com/Patrick2562/minecraft-jars-api/blob/master/public/images/logo.png">
+</p>
+
 # Minecraft Jars API
 
 This is a scraper application built in NestJS, that collects the most popular Minecraft server jar files and checks for updates from time to time.

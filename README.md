@@ -21,6 +21,7 @@ It provides an easy-to-use api that can be easily integrated into other systems.
 - [Fabric](https://fabricmc.net/)
 - [MohistMC](https://mohistmc.com/)
 - [Pufferfish](https://pufferfish.host/)
+- [NeoForge](https://neoforged.net/)
 
 
 ## How to use?

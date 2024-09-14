@@ -13,6 +13,7 @@ import PurpurScraper from "./scrapers/purpur.scraper";
 import SpigotScraper from "./scrapers/spigot.scraper";
 import ForgeScraper from "./scrapers/forge.scraper";
 import PufferfishScraper from "./scrapers/pufferfish.scraper";
+import NeoForgeScraper from "./scrapers/neoforge.scraper";
 
 @Injectable()
 export default class ScraperService
@@ -28,7 +29,8 @@ export default class ScraperService
         new ForgeScraper(),
         new FabricScraper(),
         new MohistScraper(),
-        new SpigotScraper()
+        new SpigotScraper(),
+        new NeoForgeScraper()
     ];
 
     constructor(

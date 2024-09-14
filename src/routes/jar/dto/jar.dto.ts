@@ -11,7 +11,8 @@ export enum JarType {
     forge      = "forge",
     fabric     = "fabric",
     mohist     = "mohist",
-    pufferfish = "pufferfish"
+    pufferfish = "pufferfish",
+    neoforge   = "neoforge"
 }
 
 export enum JarName {
@@ -25,7 +26,8 @@ export enum JarName {
     forge      = "Forge",
     fabric     = "Fabric",
     mohist     = "MohistMC",
-    pufferfish = "Pufferfish"
+    pufferfish = "Pufferfish",
+    neoforge   = "NeoForge"
 }
 
 export default class JarDto

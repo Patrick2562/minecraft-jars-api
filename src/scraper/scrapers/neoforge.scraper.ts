@@ -2,6 +2,7 @@ import Scraper, { ScraperResult } from './scraper';
 import JarDto, { JarType } from '../../routes/jar/dto/jar.dto';
 import DownloadHandler from '../handlers/download.handler';
 import { createHash } from 'crypto';
+import { validateJarVersion } from "src/utils/validate";
 
 export default class NeoForgeScraper extends Scraper {
     public PROJECT_NAME: JarType = JarType.neoforge;
@@ -15,6 +16,9 @@ export default class NeoForgeScraper extends Scraper {
         let list: ScraperResult[] = [];
 
         for (let version of project.versions) {
+			if (! await validateJarVersion(version))
+                continue;
+			
             let fileName = `neoforge-${version}-installer.jar`;
 
             let jar = new JarDto();
